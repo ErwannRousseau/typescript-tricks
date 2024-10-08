@@ -1,38 +1,58 @@
 {
-  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
-    "defaultBranch": "main",
-    "useIgnoreFile": true
+    "useIgnoreFile": true,
+    "defaultBranch": "main"
   },
   "organizeImports": {
     "enabled": true
   },
   "formatter": {
-    "formatWithErrors": true,
+    "enabled": true,
+    "formatWithErrors": false,
     "indentStyle": "space",
     "indentWidth": 2,
-    "lineEnding": "lf"
+    "lineEnding": "lf",
+    "lineWidth": 80
   },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
-      "nursery": {
-        "noConsole": "warn"
-      },
       "correctness": {
-        "noUnusedImports": "warn"
+        "noUnusedImports": "warn",
+        "noUndeclaredVariables": "error",
+        "noUnusedVariables": "error",
+        "useExhaustiveDependencies": "warn"
+      },
+      "suspicious": {
+        "noConsoleLog": "warn",
+        "noEmptyBlockStatements": "error"
+      },
+      "nursery": {
+        "useSortedClasses": {
+          "level": "warn",
+          "options": {
+            "attributes": ["className"],
+            "functions": ["cn", "cva"]
+          },
+          "fix": "safe"
+        }
+      },
+      "style": {
+        "useNodejsImportProtocol": {
+          "level": "warn",
+          "fix": "safe"
+        }
       }
     }
   },
   "javascript": {
-    "parser": {
-      "unsafeParameterDecoratorsEnabled": true
-    }
+    "globals": ["React"]
   },
   "files": {
-    "ignore": ["dist", ".pnpm-store", ".next"]
+    "ignore": ["node_modules", "dist", "public", "build"]
   }
 }

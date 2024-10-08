@@ -1,5 +1,5 @@
 const requiresUppercase = (str: Uppercase<string>) => {
-	return console.log(str);
+  return console.log(str);
 };
 
 requiresUppercase("HELLO");
